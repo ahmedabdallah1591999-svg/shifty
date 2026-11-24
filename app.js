@@ -193,9 +193,10 @@ function render() {
   const app = document.getElementById('app');
   const nav = document.getElementById('nav');
   if (!roster) { nav.style.display = 'none'; app.innerHTML = viewSetup(); return; }
-  if (!me) { nav.style.display = 'none'; app.innerHTML = viewPick(); return; }
   nav.style.display = 'flex';
+  if (!me && roster.employees.length === 0) tab = 'settings';
   document.querySelectorAll('nav.bottom button').forEach(b => b.classList.toggle('on', b.dataset.tab === tab));
+  if (!me && tab !== 'settings') { app.innerHTML = viewPick(); return; }
   if (tab === 'home') app.innerHTML = viewHome();
   else if (tab === 'table') app.innerHTML = viewTable();
   else app.innerHTML = viewSettings();
@@ -293,7 +294,8 @@ function viewSettings() {
   <div class="wrap">
     <div class="card">
       <b>الاسم</b>
-      <div class="emp-row"><input value="${esc(me)}" disabled><button class="del" onclick="changeName()">تغيير</button></div>
+      ${me ? `<div class="emp-row"><input value="${esc(me)}" disabled><button class="del" onclick="changeName()">تغيير</button></div>`
+           : `<p class="note">لسه مختارش اسمك. ضيف أسماء الفريق من قسم «الأسماء» تحت، وبعدين اختار اسمك من زر «اليوم» تحت في الشريط.</p>`}
     </div>
     <div class="card">
       <b>الإشعارات</b>
