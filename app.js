@@ -203,7 +203,7 @@ function render() {
 }
 
 function headerHTML(sub) {
-  return `<header class="top"><h1>شيفتي</h1><p>${esc(sub || '')}</p></header>`;
+  return `<header class="top"><h1>شيفتي</h1><p>${esc(sub || '')}</p><p style="font-size:11px;opacity:.8;margin-top:6px">أحمد عبدالله بيزنس ديفيلوبمنت</p></header>`;
 }
 
 function viewSetup() {
